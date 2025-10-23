@@ -1,5 +1,5 @@
-import { Assets, Container, Graphics, Rectangle, RoundedRectangle, Sprite, Texture } from 'pixi.js'
-import { Component } from '../core/component'
+import { Assets, Graphics, Rectangle, Sprite } from 'pixi.js'
+import { Component } from '@/assets/emerald/core/component'
 
 export class Card extends Component {
   speed: number = 0

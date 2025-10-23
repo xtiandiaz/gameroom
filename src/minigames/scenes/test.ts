@@ -1,4 +1,4 @@
-import { Scene } from '../core/scene'
+import { Scene } from '@/assets/emerald/core/scene'
 import { Card } from '../components/card'
 import { Color, ColorScheme, schemeColor } from '@/assets/design-tokens/palette'
 
