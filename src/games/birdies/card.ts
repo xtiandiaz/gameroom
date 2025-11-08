@@ -10,7 +10,9 @@ export class Card extends Component {
     super()
   }
 
-  init(texture: Texture, size: number): void {
+  initWithTexture(texture: Texture, size: number): void {
+    super.init()
+
     this._sprite = (() => {
       const sprite = new Sprite(texture)
       if (texture.height > texture.width) {

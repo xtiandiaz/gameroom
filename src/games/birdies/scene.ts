@@ -1,15 +1,15 @@
 import { Scene } from '@/assets/emerald/core/scene'
-import { Card } from '../components/card'
+import { Card } from './card'
 import { Assets, Point, Rectangle, Texture, type ApplicationOptions } from 'pixi.js'
 import { Tweener, Ease } from '@/assets/emerald/core/tweener'
 import { Color, ColorScheme, schemeColor } from '@/assets/design-tokens/palette'
-import { CardGrid } from '../components/card-grid'
+import { CardGrid } from './card-grid'
 
 export interface Options {
   speed: number
 }
 
-export class TestScene extends Scene {
+export class BirdiesScene extends Scene {
   _imgPaths: string[] = [
     '/img/hummingbird.jpg',
     '/img/blue-jay.jpg',
@@ -36,7 +36,7 @@ export class TestScene extends Scene {
     for (const texturePath of this._imgPaths) {
       const texture = Texture.from(texturePath)
       const card = new Card('')
-      card.init(texture, 200)
+      card.initWithTexture(texture, 200)
 
       this.addEntity(card)
       this._cards.push(card)
