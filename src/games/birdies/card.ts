@@ -1,7 +1,7 @@
 import { Graphics, Rectangle, Point, Sprite, Texture } from 'pixi.js'
-import { Component } from '@/assets/emerald/core/component'
+import { Entity } from '@/assets/emerald/core/entity'
 
-export class Card extends Component {
+export class Card extends Entity {
   speed: number = 0
 
   _sprite!: Sprite

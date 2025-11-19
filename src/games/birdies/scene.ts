@@ -1,7 +1,7 @@
 import { Scene } from '@/assets/emerald/core/scene'
 import { Card } from './card'
 import { Assets, Rectangle, Texture, type ApplicationOptions } from 'pixi.js'
-import { Tweener } from '@/assets/emerald/core/tweener'
+import { Tweener } from '@/assets/emerald/tweener'
 import { Color, ColorScheme, schemeColor } from '@/assets/design-tokens/palette'
 import { CardGrid } from './card-grid'
 
@@ -31,14 +31,14 @@ export class BirdiesScene extends Scene {
     await Assets.load(this._imgPaths)
 
     this._grid.init()
-    this.addEntity(this._grid)
+    this.add(this._grid)
 
     for (const texturePath of this._imgPaths) {
       const texture = Texture.from(texturePath)
       const card = new Card('')
       card.initWithTexture(texture, 200)
 
-      this.addEntity(card)
+      this.add(card)
       this._cards.push(card)
     }
   }
@@ -53,7 +53,7 @@ export class BirdiesScene extends Scene {
   async animateCards(): Promise<void> {
     for await (const card of this._cards) {
       await Tweener.main.toAsync(card, { rotation: card.rotation + 180 }, 'back.out', 2)
-      this.destroyEntity(card.id)
+      this.destroy(card.id)
     }
   }
 

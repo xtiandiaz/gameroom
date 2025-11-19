@@ -1,15 +1,14 @@
-import { Tweener } from '@/assets/emerald/core/tweener'
 import { Scene } from '@/assets/emerald/core/scene'
-import { Blob } from './components/blob'
-import stage from './components/stage'
+import { Player } from './entities/player'
+import grid from './entities/grid'
 
 const scene = new Scene()
 
-const player = new Blob(0xffffff)
+const player = new Player()
 
 scene.onInit = (s) => {
-  s.addEntity(stage)
-  s.addEntity(player)
+  s.add(grid)
+  s.add(player)
 }
 
 scene.onStart = (s) => {
@@ -18,16 +17,16 @@ scene.onStart = (s) => {
 
   s.stage.interactive = true
 
-  s.stage.on('globalpointermove', (e) => {
+  s.stage.on('mousemove', (e) => {
     const localPos = e.getLocalPosition(s.stage)
-    player.position = localPos
+    player.movement.destination = localPos
   })
 
-  s.stage.on('click', () => {
-    Tweener.main.to(player, { scaleX: 2, scaleY: 2 }, 'ease.out', 1).vars.onComplete = () => {
-      console.log('done')
-    }
-  })
+  // s.stage.on('click', () => {
+  //   Tweener.main.to(player, { scaleX: 2, scaleY: 2 }, 'ease.out', 1).vars.onComplete = () => {
+  //     console.log('done')
+  //   }
+  // })
 }
 
 export default scene

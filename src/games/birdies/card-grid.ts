@@ -1,4 +1,4 @@
-import { Component } from '@/assets/emerald/core/component'
+import { Entity } from '@/assets/emerald/core/entity'
 import { Graphics, Point, Rectangle } from 'pixi.js'
 
 export interface CardLayout {
@@ -6,7 +6,7 @@ export interface CardLayout {
   spacing: number
 }
 
-export class CardGrid extends Component {
+export class CardGrid extends Entity {
   private _g = new Graphics()
   private _layout: CardLayout
   private _cols = 0

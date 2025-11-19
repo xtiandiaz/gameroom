@@ -1,7 +1,7 @@
-import { Component } from '@/assets/emerald/core/component'
+import { Entity } from '@/assets/emerald/core/entity'
 import { Graphics, type Rectangle } from 'pixi.js'
 
-export class Blob extends Component {
+export class Blob extends Entity {
   private color: number
   private graphics = new Graphics()
 
@@ -15,7 +15,7 @@ export class Blob extends Component {
     this.addChild(this.graphics)
   }
 
-  draw(rect: Rectangle): void {
+  draw(_: Rectangle): void {
     const g = this.graphics
     g.circle(0, 0, 20)
     g.fill(this.color)
