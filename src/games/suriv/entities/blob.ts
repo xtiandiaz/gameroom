@@ -11,8 +11,6 @@ export class Blob extends Entity {
   }
 
   init(): void {
-    super.init()
-
     this.addChild(this.graphics)
   }
 

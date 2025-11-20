@@ -1,9 +1,8 @@
-import { Movement } from '../components/Movement'
 import { Blob } from './blob'
+import { PlayerControls } from '../components/controls'
+import { Point, type Rectangle } from 'pixi.js'
 
 export class Player extends Blob {
-  movement = new Movement()
-
   constructor() {
     super(0xffffff)
   }
@@ -11,8 +10,12 @@ export class Player extends Blob {
   init(): void {
     super.init()
 
-    this.movement.init()
+    this.addComponent(PlayerControls)
+  }
 
-    this.addComponent(this.movement)
+  draw(bounds: Rectangle): void {
+    super.draw(bounds)
+
+    this.position = new Point(bounds.width / 2, bounds.height / 2)
   }
 }
