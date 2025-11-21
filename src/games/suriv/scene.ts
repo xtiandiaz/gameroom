@@ -17,12 +17,15 @@ scene.onInit = (s) => {
 scene.onStart = (s) => {
   s.stage.interactive = true
 
-  const controls = player.getComponent(PlayerControls)
+  const controls = player.getComponent(PlayerControls)!
   s.stage.on('pointerdown', (e) => {
-    controls?.onTouchStarted(e.getLocalPosition(scene.stage))
+    controls.onTouchStarted(e.getLocalPosition(s.stage))
   })
   s.stage.on('pointermove', (e) => {
-    controls?.onTouchMoved(e.getLocalPosition(s.stage))
+    controls.onTouchMoved(e.getLocalPosition(s.stage))
+  })
+  s.stage.on('pointerup', (e) => {
+    controls.onTouchEnded()
   })
 
   // s.stage.on('click', () => {
