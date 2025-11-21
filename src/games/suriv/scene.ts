@@ -24,7 +24,7 @@ scene.onStart = (s) => {
   s.stage.on('pointermove', (e) => {
     controls.onTouchMoved(e.getLocalPosition(s.stage))
   })
-  s.stage.on('pointerup', (e) => {
+  s.stage.on('pointerup', () => {
     controls.onTouchEnded()
   })
 

@@ -1,6 +1,5 @@
 import { Component } from '@/assets/emerald/core/component'
 import { Point, Point as Vector2, Rectangle } from 'pixi.js'
-import '@/assets/emerald/types'
 import 'pixi.js/math-extras'
 import '@/assets/emerald/extensions/pixi.extensions'
 
