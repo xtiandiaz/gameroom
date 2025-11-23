@@ -1,21 +1,29 @@
 import { Blob } from './blob'
 import { PlayerControls } from '../components/controls'
-import { Point, type Rectangle } from 'pixi.js'
+import { Point, Rectangle } from 'pixi.js'
+import { Bodies, Body, Vector } from 'matter-js'
 
 export class Player extends Blob {
+  private viewport = new Rectangle()
+
   constructor() {
     super(0xffffff)
   }
 
-  init(): void {
-    super.init()
-
+  init() {
     this.addComponent(PlayerControls)
+    this.addBody(Bodies.rectangle(0, 0, 20, 20))
   }
 
-  draw(bounds: Rectangle): void {
-    super.draw(bounds)
+  draw(rect: Rectangle): void {
+    super.draw(rect)
 
-    this.position = new Point(bounds.width / 2, bounds.height / 2)
+    this.viewport = rect
   }
+
+  start(): void {
+    Body.setPosition(this.body!, this.viewport.center())
+  }
+
+  update(deltaTime: number): void {}
 }

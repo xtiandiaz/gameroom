@@ -1,4 +1,4 @@
-import { Component } from '@/assets/emerald/core/component'
+import BaseComponent from '@/assets/emerald/components/Component'
 import { Point, Point as Vector2, Rectangle } from 'pixi.js'
 import 'pixi.js/math-extras'
 import '@/assets/emerald/extensions/pixi.extensions'
@@ -11,8 +11,8 @@ interface State {
   bounds: Rectangle
 }
 
-export class PlayerControls extends Component {
-  private state: State = {
+export class PlayerControls extends BaseComponent {
+  state: State = {
     startTouchPos: new Point(),
     startPlayerPos: new Point(),
     nextPos: new Point(),
@@ -27,11 +27,12 @@ export class PlayerControls extends Component {
   }
 
   start(): void {
-    this.state.nextPos = this.state.startPlayerPos = this.container.position.clone()
+    this.state.nextPos.copyFrom(this.container.position)
+    this.state.startPlayerPos.copyFrom(this.container.position)
   }
 
   onTouchStarted(startPos: Point) {
-    this.state.startPlayerPos = this.container.position.clone()
+    this.state.startPlayerPos.copyFrom(this.container.position)
     this.state.startTouchPos = startPos
     this.state.shouldMove = true
   }
@@ -42,6 +43,7 @@ export class PlayerControls extends Component {
     }
     const normDispl = pos.subtract(this.state.startTouchPos).divide(this.dragSpan)
     const displ = normDispl.multiply(this.state.bounds.size())
+    // console.log(normDispl, displ)
     this.state.nextPos = this.state.startPlayerPos.add(displ)
   }
 
@@ -49,9 +51,9 @@ export class PlayerControls extends Component {
     this.state.shouldMove = false
   }
 
-  update(_: number): void {
-    this.container.position = this.container.position.add(
-      this.state.nextPos.subtract(this.container.position).multiplyScalar(1 / 7),
-    )
-  }
+  // update(_: number): void {
+  //   this.container.position = this.container.position.add(
+  //     this.state.nextPos.subtract(this.container.position).multiplyScalar(1 / 7),
+  //   )
+  // }
 }

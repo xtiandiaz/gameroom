@@ -1,14 +1,10 @@
 import { Graphics, Rectangle, Point, Sprite, Texture } from 'pixi.js'
-import { Entity } from '@/assets/emerald/core/entity'
+import { Entity } from '@/assets/emerald/entity'
 
 export class Card extends Entity {
   speed: number = 0
 
   _sprite!: Sprite
-
-  constructor(term: string) {
-    super()
-  }
 
   initWithTexture(texture: Texture, size: number): void {
     super.init()

@@ -1,4 +1,4 @@
-import { Scene } from '@/assets/emerald/core/scene'
+import { Scene } from '@/assets/emerald/scene'
 import { Card } from './card'
 import { Assets, Rectangle, Texture, type ApplicationOptions } from 'pixi.js'
 import { Tweener } from '@/assets/emerald/tweener'
@@ -45,7 +45,7 @@ export class BirdiesScene extends Scene {
 
   draw(): void {
     const margin = 32
-    const gridDim = Math.min(this.bounds.width, this.bounds.height) - margin * 2
+    const gridDim = Math.min(this.viewport.width, this.viewport.height) - margin * 2
 
     this._grid.draw(new Rectangle(0, 0, gridDim, gridDim))
   }
@@ -59,8 +59,8 @@ export class BirdiesScene extends Scene {
 
   onResize(): void {
     this._grid.position.set(
-      (this.bounds.width - this._grid.width) / 2,
-      (this.bounds.height - this._grid.height) / 2,
+      (this.viewport.width - this._grid.width) / 2,
+      (this.viewport.height - this._grid.height) / 2,
     )
     this._placeCards()
   }

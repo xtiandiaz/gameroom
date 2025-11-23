@@ -1,14 +1,16 @@
 <script lang="ts" setup>
 import { onMounted, useTemplateRef } from 'vue';
-import scene from './scene';
+import SurivScene from './scene';
 import { Color, ColorScheme, schemeColor } from '@/assets/design-tokens/palette';
 
 const viewport = useTemplateRef<HTMLElement>('viewport')
 const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
 
+const scene = new SurivScene()
+
 onMounted(async () => {
   await scene.init({
-    background: schemeColor(ColorScheme.Dark, Color.Gray),
+    background: 0x272c4f,
     canvas: canvas.value!,
     resizeTo: viewport.value!,
   })
