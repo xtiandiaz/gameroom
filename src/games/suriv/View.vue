@@ -1,21 +1,23 @@
 <script lang="ts" setup>
-import { onMounted, useTemplateRef } from 'vue';
-import SurivScene from './scene';
-import { Color, ColorScheme, schemeColor } from '@/assets/design-tokens/palette';
+import { onBeforeUnmount, onMounted, useTemplateRef } from 'vue';
+import game from './game'
 
 const viewport = useTemplateRef<HTMLElement>('viewport')
 const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
 
-const scene = new SurivScene()
-
 onMounted(async () => {
-  await scene.init({
+  await game.init({
     background: 0x272c4f,
     canvas: canvas.value!,
     resizeTo: viewport.value!,
+    antialias: true,
   })
-  
-  scene.start()
+
+  await game.switchToScene('demo')
+})
+
+onBeforeUnmount(() => {
+  game.deinit()
 })
 </script>
 

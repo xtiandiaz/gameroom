@@ -1,7 +1,7 @@
-import { Scene } from '@/assets/emerald/scene'
+import { Scene } from '@/assets/emerald/core'
 import { Card } from './card'
 import { Assets, Rectangle, Texture, type ApplicationOptions } from 'pixi.js'
-import { Tweener } from '@/assets/emerald/tweener'
+import { Tweener } from '@/assets/emerald/core'
 import { Color, ColorScheme, schemeColor } from '@/assets/design-tokens/palette'
 import { CardGrid } from './card-grid'
 

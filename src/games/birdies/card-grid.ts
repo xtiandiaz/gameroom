@@ -1,4 +1,4 @@
-import { Entity } from '@/assets/emerald/entity'
+import { Entity } from '@/assets/emerald/core'
 import { Graphics, Point, Rectangle } from 'pixi.js'
 
 export interface CardLayout {
