@@ -16,7 +16,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "emerald": "file:submodules/emerald-pixi",
+    "emerald": "file:submodules/emerald",
     "gsap": "^3.13.0",
     "pinia": "^3.0.3",
     "pixi.js": "^8.14.0",

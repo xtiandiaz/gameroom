@@ -1,6 +1,6 @@
 [submodule "submodules/design-tokens"]
 	path = submodules/design-tokens
 	url = git@github.com:xtiandiaz/design-tokens.git
-[submodule "submodules/emerald-pixi"]
-	path = submodules/emerald-pixi
-	url = git@github.com:xtiandiaz/emerald-pixi.git
+[submodule "submodules/emerald"]
+	path = submodules/emerald
+	url = git@github.com:xtiandiaz/emerald.git
