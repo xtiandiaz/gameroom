@@ -1,10 +1,15 @@
-import { Scene, World, Screen, type SignalBus, type Disconnectable } from '@/assets/emerald/core'
-import { GestureSystem, PhysicsSystem, CollisionSystem } from '@/assets/emerald/systems'
 import { createBoundaries, createCollectable, createEnemy, createPlayer } from './entities'
 import { CollectingSystem, PlayerControlSystem } from './systems'
-import { DragGestureTracker } from '@/assets/emerald/input'
 import { ItemCollected } from './signals'
-import { connectContainerEvent } from '@/assets/emerald/input/utils'
+import {
+  CollisionSystem,
+  DragGestureTracker,
+  GestureSystem,
+  PhysicsSystem,
+  Scene,
+  World,
+  type SignalBus,
+} from '@/assets/emerald'
 
 export class DemoScene extends Scene {
   systems = [
@@ -28,8 +33,6 @@ export class DemoScene extends Scene {
     await super.init(world, sb)
 
     this.connections.push(sb.connect(ItemCollected, (_) => world.addEntity(createCollectable())))
-
-    // this.draggingTracker.init(this.slate, (g) => sb.queue(new GestureSignal(g)))
   }
 
   deinit(): void {

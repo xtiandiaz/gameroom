@@ -1,24 +1,23 @@
-import { Container, FederatedPointerEvent, Point } from 'pixi.js'
+import { FederatedPointerEvent, Point } from 'pixi.js'
 import '@/assets/emerald/extensions/pixi.extensions'
 import 'pixi.js/math-extras'
 import {
-  World,
-  System,
-  Vector,
+  CollisionSignal,
+  connectContainerEvent,
+  connectDocumentEvent,
   Screen,
-  Direction,
-  type SignalBus,
   Entity,
-} from '@/assets/emerald/core'
-import { RigidBody } from '@/assets/emerald/components'
-import { CollisionSignal, GestureSignal, ScreenResizeSignal } from '@/assets/emerald/signals'
-import { GesturePhase, type DragGesture } from '@/assets/emerald/input'
-import { clamp, directionVector } from '@/assets/emerald/core/utils'
-import { connectContainerEvent, connectDocumentEvent } from '@/assets/emerald/input/utils'
-import { Movement } from './components'
+  HUD,
+  RigidBody,
+  System,
+  World,
+  clamp,
+  Direction,
+  Vector,
+  directionVector,
+  type SignalBus,
+} from '@/assets/emerald'
 import { ItemCollected } from './signals'
-import type { HUD } from '@/assets/emerald/ui'
-import { GestureTarget } from '@/assets/emerald/components/GestureTarget'
 
 export class CollectingSystem extends System {
   init(world: World, hud: HUD, sb: SignalBus): void {

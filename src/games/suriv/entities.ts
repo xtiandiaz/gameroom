@@ -1,9 +1,5 @@
-import { Entity, Screen, Vector } from '@/assets/emerald/core'
-import { Tapping, Dragging, Swiping, RigidBody, Collider } from '@/assets/emerald/components'
 import { Graphics, Point, Rectangle, Sprite, SpritePipe, type RoundedPoint } from 'pixi.js'
-import { Movement } from './components'
-import { GestureTarget } from '@/assets/emerald/components/GestureTarget'
-import { GestureKey } from '@/assets/emerald/input'
+import { Collider, Entity, GestureKey, GestureTarget, RigidBody, Screen } from '@/assets/emerald'
 
 export function createBoundaries(): Entity[] {
   const thickness = 100
@@ -45,12 +41,7 @@ export function createPlayer(): Entity {
   e.addComponent(Collider.circle(0, 0, 20))
   // rb.velocity = new Vector(1, 0)
   // rb.force = new Vector(10, -20)
-
   e.addComponent(new GestureTarget([GestureKey.Drag]))
-  // e.addComponent(new Movement(new Point(rb.position.x, rb.position.y)))
-  // p.addComponent(new Swiping()).onGesture = (g) => {
-  //   pc.applyForce(g.direction.multiplyScalar(0.1))
-  // }
 
   return e
 }
@@ -71,6 +62,7 @@ export function createCollectable(): Entity {
 
   // e.addComponent(Collider.circle(0, 0, 10))
   e.addComponent(Collider.rectangle(-10, -10, 20, 20))
+
   return e
 }
 
@@ -92,6 +84,8 @@ export function createEnemy(): Entity {
 
   const pc = e.addComponent(new RigidBody(200, 200))
   pc.isStatic = true
+
   e.addComponent(Collider.polygon(...enemySPs().flatMap((p) => [p.x, p.y])))
+
   return e
 }
