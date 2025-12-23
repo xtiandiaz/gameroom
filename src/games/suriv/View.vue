@@ -66,6 +66,7 @@ onBeforeUnmount(() => {
   // }
 
   .score {
+    color: #00ff96;
     font-family: 'Inter SemiBold';
     font-size: 20rem;
     opacity: 10%;

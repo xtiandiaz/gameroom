@@ -1,4 +1,4 @@
-import { FederatedPointerEvent, Graphics, Point } from 'pixi.js'
+import { Container, FederatedPointerEvent, Graphics, Point } from 'pixi.js'
 import '@/assets/emerald/extensions/pixi.extensions'
 import 'pixi.js/math-extras'
 import {
@@ -20,20 +20,34 @@ import {
   ColliderShape,
   Tweener,
   type SignalBus,
+  ScreenResizeSignal,
 } from '@/assets/emerald'
 import { ItemCollected } from './signals'
 import { CollisionLayer, Color } from './types'
-import { PlayerSkin } from './components'
+import { GridSkin, PlayerSkin } from './components'
 
-export class Skinning extends System {
+export class Resizing extends System {
+  init(world: World, hud: HUD, sb: SignalBus): void {
+    this.connections.push(sb.connect(ScreenResizeSignal, (s) => this.resize(world)))
+
+    this.resize(world)
+  }
+
+  private resize(world: World) {
+    const grid = world.getEntitiesByTag('grid')![0]!
+    grid.width = Screen.width
+    grid.height = Screen.height
+    grid.getComponent(GridSkin)!.scale()
+  }
+}
+
+export class PlayerSkinning extends System {
   private player!: Entity
-  private skinGraphics = new Graphics()
   private prevPos!: Point
   private tailElongFactor = 1
 
   init(world: World, hud: HUD, sb: SignalBus): void {
     this.player = world.getEntitiesByTag('player')![0]!
-    this.player.addChild(this.skinGraphics)
 
     this.prevPos = this.player.position.clone()
   }
@@ -46,12 +60,8 @@ export class Skinning extends System {
       2,
     )
     this.tailElongFactor += (nextElongFactor - this.tailElongFactor) / 6
-    skin.tailPoint.x = -skin.radius * this.tailElongFactor
 
-    this.skinGraphics.clear()
-    this.skinGraphics
-      .roundShape(skin.shapePoints, skin.radius, true, 0)
-      .stroke({ width: 5, color: Color.Energy })
+    skin.redraw(this.tailElongFactor)
 
     this.prevPos.copyFrom(this.player.position)
   }
